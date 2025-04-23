@@ -36,26 +36,30 @@ Sistema desenvolvido para otimizar a organização de eventos da **OCULAR GAMING
 ### Página Inicial
 
 ![Tela Home](./priv/static/images/home.png)
+
 ![Tela Home/Logado](./priv/static/images/home-logado.png)
 
 ### Login e Cadastro 
 
 ![Tela de Login](./priv/static/images/login.png)
+
 ![Tela de Cadastro de Usuários](./priv/static/images/registrar.png)
 
 ### Eventos 
 
 ![Tela de Criação de Evento](./priv/static/images/criar-evento.png)
-![Tela de Evento Específico](./priv/static/images/eventos.png)
 
-### Tabela e Participantes
+![Tela de Eventos](./priv/static/images/eventos.png)
 
-![Tela de Eventos](./priv/static/images/evento-tabela.png)
+### Participantes
+
 ![Tela de Participantes](./priv/static/images/participantes.png)
 
-### Builds
+### Criação de Builds
 
-![Tela de Modal para criação de builds](./priv/static/images/discord.png)
+![Tela de Eventos/Builds](./priv/static/images/evento-tabela.png)
+
+![Tela de Modal para criação de builds](./priv/static/images/modal.png)
 
 ### Integração com Discord
 
