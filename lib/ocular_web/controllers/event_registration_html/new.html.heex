@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href={~p"/assets/app.css"} />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <title>Ocular - Create Event</title>
+  </head>
+
+  <body>
+    <div class="container-content">
+      <header>
+        <div class="logo">
+          <img src="/images/Vector_Smart_Object.png" alt="Guild logo" />
+        </div>
+        <nav>
+          <ul>
+            <li><a href="../../">Home</a></li>
+            <li><a href="/events">Events</a></li>
+            <li><a href="../../players/log_out">Log Out</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main class="container">
+        <form class="register-form" id="register-form" method="post" action="/events/register/new">
+          <div class="container-register">
+            <div class="register flex-basis-45">
+              <label for="name">Name</label>
+              <input type="text" name="name" id="name" required />
+
+              <label for="objective">Objective</label>
+              <input type="text" name="objective" id="objective" required />
+
+              <label for="location">Location</label>
+              <input type="text" name="location" id="location" required />
+            </div>
+
+            <div class="register flex-basis-45">
+              <label for="item_power">Item Power</label>
+              <input type="number" name="item_power" id="item_power" required />
+
+              <label for="tier">Tier</label>
+              <input type="number" id="tier" name="tier" required />
+
+              <label for="time">Time</label>
+              <input type="datetime-local" id="time" name="time" required />
+            </div>
+
+            <div class="register flex-basis-45 flex-weapons">
+              <label for="caller">Caller</label>
+              <input type="text" name="caller" id="caller" required />
+
+              <label for="regeared?">Regeared?</label>
+              <select name="regeared?" id="regeared?" required>
+                <option value=""></option>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+              </select>
+
+              <label for="quality">Quality</label>
+              <select name="quality" id="quality">
+                <option value=""></option>
+                <option value="good">Good or better</option>
+                <option value="outstanding">Outstanding or better</option>
+                <option value="excellent ">Excellent or better</option>
+              </select>
+            </div>
+          </div>
+          <button onclick="" type="submit" id="cadastrar-usuario">create</button>
+        </form>
+      </main>
+    </div>
+    <script>
+      const form = document.querySelector('form');
+      form.addEventListener('submit', handleSubmit);
+
+      function handleSubmit(event) {
+        const data = new FormData(event.target);
+        const time = data.get('time');
+
+        const date = new Date(time);
+        const dateUTC = date.toISOString();
+
+        event.target['time'].value = dateUTC.slice(0, 16);
+      }
+    </script>
+  </body>
+</html>

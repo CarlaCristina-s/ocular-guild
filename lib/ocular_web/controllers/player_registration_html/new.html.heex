@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href={~p"/assets/app.css"} />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <title>Ocular - Register</title>
+  </head>
+
+  <body>
+    <div class="container-content">
+      <header>
+        <div class="logo">
+          <img src="/images/Vector_Smart_Object.png" alt="Logo da Guild" />
+        </div>
+
+        <nav>
+          <ul>
+            <li><a href="/">Home</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main class="container">
+        <form
+          class="register-form"
+          id="register-form"
+          onsubmit="return validatePassword()"
+          method="post"
+          action="/players/register"
+        >
+          <div class="container-register">
+            <div class="register flex-basis-48">
+              <label for="name">Name</label> <input type="text" name="name" id="name" required />
+              <label for="email">Email</label>
+              <input type="text" name="email" id="email" required />
+            </div>
+
+            <div class="register flex-basis-48">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                minlength="8"
+                maxlength="72"
+                required
+              /> <label for="confirm-password">Confirm password</label>
+              <input type="password" id="confirm-password" required /> <span id="message"></span>
+            </div>
+
+            <button onclick="" type="submit" id="cadastrar-usuario">create</button>
+            <p class="message">Already registered? <a href="login.html">Login</a></p>
+          </div>
+        </form>
+      </main>
+    </div>
+
+    <script>
+      function validatePassword() {
+            if (
+              document.getElementById("password").value ==
+              document.getElementById("confirm-password").value
+            ) {
+              return true;
+            } else {
+              document.getElementById("message").style.color = "red";
+              document.getElementById("message").innerHTML = "Passwords not matching!"
+
+              return false;
+            }
+          }
+    </script>
+  </body>
+</html>

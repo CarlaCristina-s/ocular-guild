@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href={~p"/assets/app.css"} />
+    <title>Login</title>
+  </head>
+
+  <body>
+    <div class="container-content">
+      <header>
+        <div class="logo">
+          <img src="/images/Vector_Smart_Object.png" alt="Logo da Guild" />
+        </div>
+        <nav>
+          <ul>
+            <li><a href="/">Home</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main class="container-login">
+        <form class="form-login" id="form-login" method="post" action="/players/log_in">
+          <div class="input-container-login">
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" required />
+          </div>
+
+          <div class="input-container-login">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required />
+
+            <%= if Phoenix.Flash.get(@flash, :failed_log_in) do %>
+              <span style="color:red">E-mail or password is incorrect!</span>
+            <% end %>
+          </div>
+
+          <button onclick="" type="submit">login</button>
+          <p class="message">Not registered yet? <a href="register">Create an account</a></p>
+        </form>
+      </main>
+    </div>
+  </body>
+</html>

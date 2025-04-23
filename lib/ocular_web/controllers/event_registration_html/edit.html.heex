@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href={~p"/assets/app.css"} />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <title>Ocular - Edit Event</title>
+  </head>
+
+  <body>
+    <div class="container-content">
+      <header class="header-table">
+        <div class="logo">
+          <img src="/images/Vector_Smart_Object.png" alt="Logo da Guild" />
+        </div>
+        <nav>
+          <ul>
+            <li><a href="../../">Home</a></li>
+            <li><a href="/events">Events</a></li>
+            <li><a href="../../players/log_out">Log Out</a></li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <div class="container-table guild-page" id="">
+          <div class="mx-auto">
+            <div class="table-responsive-sm">
+              <table class="table table-dark table-hover table-bordered">
+                <div class="d-flex justify-content-around align-items-center table-dark">
+                  <h4 class="table-h3 w-50 p-3" id="table-h3"><%= @event.name %></h4>
+                  <h5 class="table-h4" id="table-h3">Caller: <%= @event.caller %></h5>
+                  <h5 class="table-h4" id="table-h3">Location: <%= @event.location %></h5>
+                  <h5 class="table-h4" id="table-h3">Tier: T<%= @event.tier %></h5>
+                  <button type="button" class="btn btn-dark" id="openModalBtn">Add Build</button>
+                </div>
+                <thead>
+                  <tr>
+                    <th scope="col">Weapon</th>
+                    <th scope="col">Offhand</th>
+                    <th scope="col">Head</th>
+                    <th scope="col">Chest</th>
+                    <th scope="col">Feet</th>
+                    <th scope="col">Cape</th>
+                    <th scope="col">Food</th>
+                    <th scope="col">Pot</th>
+                  </tr>
+                </thead>
+                <tbody class="container-space" id="dados-tabela">
+                  <%= for build <- @builds do %>
+                    <tr>
+                      <td><%= build.weapon %></td>
+                      <td><%= build.offhand %></td>
+                      <td><%= build.head %></td>
+                      <td><%= build.chest %></td>
+                      <td><%= build.feet %></td>
+                      <td><%= build.cape %></td>
+                      <td><%= build.food %></td>
+                      <td><%= build.pot %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <form id="form-guild" method="post" action={"/events/#{@event_id}/edit"}>
+          <div class="label-form">
+            <div class="input-container flex-basis-100">
+              <label for="weapon">Weapon</label>
+              <select name="weapon" id="weapon" required>
+                <option value=""></option>
+                <option value="Battleaxe">Battleaxe</option>
+                <option value="Greataxe">Greataxe</option>
+                <option value="Halberd">Halberd</option>
+                <option value="Carrioncaller">Carrioncaller</option>
+                <option value="Infernal Scythe">Infernal Scythe</option>
+                <option value="Bear Paws">Bear Paws</option>
+                <option value="Realmbreaker">Realmbreaker</option>
+                <option value="Broadsword">Broadsword</option>
+                <option value="Claymore">Claymore</option>
+                <option value="Dual Swords">Dual Swords</option>
+                <option value="Clarent Blade">Clarent Blade</option>
+                <option value="Carving Sword">Carving Sword</option>
+                <option value="Galatine Pair">Galatine Pair</option>
+                <option value="Infinity Blade">Infinity Blade</option>
+                <option value="Kingmaker">Kingmaker</option>
+                <option value="1H Mace">1H Mace</option>
+                <option value="Heavy Mace">Heavy Mace</option>
+                <option value="Morning Star">Morning Star</option>
+                <option value="Bedrock Mace">Bedrock Mace</option>
+                <option value="Incubus Mace">Incubus Mace</option>
+                <option value="Camlann Mace">Camlann Mace</option>
+                <option value="Dreadstorm Monarch">Dreadstorm Monarch</option>
+                <option value="Oathkeepers">Oathkeepers</option>
+                <option value="1H Hammer">1H Hammer</option>
+                <option value="Great Hammer">Great Hammer</option>
+                <option value="Polehammer">Polehammer</option>
+                <option value="Tombhammer">Tombhammer</option>
+                <option value="Forge Hammers">Forge Hammers</option>
+                <option value="Grovekeeper">Grovekeeper</option>
+                <option value="Hand of Justice">Hand of Justice</option>
+                <option value="Crossbow">Crossbow</option>
+                <option value="Light Crossbow">Light Crossbow</option>
+                <option value="Heavy Crossbow">Heavy Crossbow</option>
+                <option value="Weaping Repeater">Weaping Repeater</option>
+                <option value="Boltcasters">Boltcasters</option>
+                <option value="Siegebow">Siegebow</option>
+                <option value="Energy Shaper">Energy Shaper</option>
+                <option value="Brawler Gloves">Brawler Gloves</option>
+                <option value="Battle Bracers">Battle Bracers</option>
+                <option value="Spiked Gauntlets">Spiked Gauntlets</option>
+                <option value="Ursine Maulers">Ursine Maulers</option>
+                <option value="Hellfire Hands">Hellfire Hands</option>
+                <option value="Ravenstrike Cestus">Ravenstrike Cestus</option>
+                <option value="Fists of Avalon">Fists of Avalon</option>
+                <option value="Bow">Bow</option>
+                <option value="Bow of Badon">Bow of Badon</option>
+                <option value="Whispering Bow">Whispering Bow</option>
+                <option value="Mistpiercer">Mistpiercer</option>
+                <option value="Longbow">Longbow</option>
+                <option value="Wailing Bow">Wailing Bow</option>
+                <option value="Warbow">Warbow</option>
+                <option value="1H Spear">1H Spear</option>
+                <option value="Pike">Pike</option>
+                <option value="Spirithunter">Spirithunter</option>
+                <option value="Daybreaker">Daybreaker</option>
+                <option value="Glaive">Glaive</option>
+                <option value="Heron Spear">Heron Spear</option>
+                <option value="Trinity Spear">Trinity Spear</option>
+                <option value="Rift Glaive">Rift Glaive</option>
+                <option value="1H Nature Staff">1H Nature Staff</option>
+                <option value="Great Nature Staff">Great Nature Staff</option>
+                <option value="Blight Staff">Blight Staff</option>
+                <option value="Druidic Staff">Druidic Staff</option>
+                <option value="Ironroot Staff">Ironroot Staff</option>
+                <option value="Rampant Staff">Rampant Staff</option>
+                <option value="Wild Staff">Wild Staff</option>
+                <option value="1H Dagger">1H Dagger</option>
+                <option value="Dagger Pair">Dagger Pair</option>
+                <option value="Claws">Claws</option>
+                <option value="Bloodletter">Bloodletter</option>
+                <option value="Demonfang">Demonfang</option>
+                <option value="Twin Slayers">Twin Slayers</option>
+                <option value="Deathgivers">Deathgivers</option>
+                <option value="Bridled Fury">Bridled Fury</option>
+                <option value="Quarterstaff">Quarterstaff</option>
+                <option value="Phantom Twinblade">Phantom Twinblade</option>
+                <option value="Double Bladed Staff">Double Bladed Staff</option>
+                <option value="Staff of Balance">Staff of Balance</option>
+                <option value="Black Monk Stave">Black Monk Stave</option>
+                <option value="Soulscythe">Soulscythe</option>
+                <option value="Grailseeker">Grailseeker</option>
+                <option value="Iron-clad Staff">Iron-clad Staff</option>
+                <option value="1H Fire Staff">1H Fire Staff</option>
+                <option value="Great Fire Staff">Great Fire Staff</option>
+                <option value="Infernal Staff">Infernal Staff</option>
+                <option value="Wildfire Staff">Wildfire Staff</option>
+                <option value="Brimstone Staff">Brimstone Staff</option>
+                <option value="Blazing Staff">Blazing Staff</option>
+                <option value="Dawnsong">Dawnsong</option>
+                <option value="Exalted Staff">Exalted Staff</option>
+                <option value="Hallowfall">Hallowfall</option>
+                <option value="Lifetouch Staff">Lifetouch Staff</option>
+                <option value="Fallen Staff">Fallen Staff</option>
+                <option value="Redemption Staff">Redemption Staff</option>
+                <option value="Holy Staff">Holy Staff</option>
+                <option value="Great Holy Staff">Great Holy Staff</option>
+                <option value="Divine Staff">Divine Staff</option>
+                <option value="1H Arcane Staff">1H Arcane Staff</option>
+                <option value="Great Arcane Staff">Great Arcane Staff</option>
+                <option value="Enigmatic Staff">Enigmatic Staff</option>
+                <option value="Witchwork Staff">Witchwork Staff</option>
+                <option value="Occult Staff">Occult Staff</option>
+                <option value="Malevolent Locus">Malevolent Locus</option>
+                <option value="Astral Staff">Astral Staff</option>
+                <option value="Evensong">Evensong</option>
+                <option value="Arctic Staff">Arctic Staff</option>
+                <option value="1H Frost Staff">1H Frost Staff</option>
+                <option value="Glacial Staff">Glacial Staff</option>
+                <option value="Great Frost Staff">Great Frost Staff</option>
+                <option value="Hoarfrost Staff">Hoarfrost Staff</option>
+                <option value="Icicle Staff">Icicle Staff</option>
+                <option value="Permafrost Prism">Permafrost Prism</option>
+                <option value="Chillhowl">Chillhowl</option>
+                <option value="1H Cursed Staff">1H Cursed Staff</option>
+                <option value="Great Cursed Staff">Great Cursed Staff</option>
+                <option value="Demonic Staff">Demonic Staff</option>
+                <option value="Lifecurse Staff">Lifecurse Staff</option>
+                <option value="Cursed Skull">Cursed Skull</option>
+                <option value="Damnation Staff">Damnation Staff</option>
+                <option value="Shadowcaller">Shadowcaller</option>
+                <option value="Earthrune Staff">Earthrune Staff</option>
+                <option value="Primal Staff">Primal Staff</option>
+                <option value="Bloodmoon Staff">Bloodmoon Staff</option>
+                <option value="Prowling Staff">Prowling Staff</option>
+                <option value="Rootbound Staff">Rootbound Staff</option>
+                <option value="Hellspawn Staff">Hellspawn Staff</option>
+                <option value="Lightcaller">Lightcaller</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="label-form">
+            <div class="input-container flex-basis-100">
+              <label for="offhand">Offhand</label>
+              <select name="offhand" id="offhand">
+                <option value=""></option>
+                <option value="Shield">Shield</option>
+                <option value="Sarcophagus">Sarcophagus</option>
+                <option value="Caitiff Shield">Caitiff Shield</option>
+                <option value="Facebreaker">Facebreaker</option>
+                <option value="Astral Aegis">Astral Aegis</option>
+                <option value="Torch">Torch</option>
+                <option value="Mistcaller">Mistcaller</option>
+                <option value="Leering Cane">Leering Cane</option>
+                <option value="Cryptcandle">Cryptcandle</option>
+                <option value="Sacred Scepter">Sacred Scepter</option>
+                <option value="Tome of Spells">Tome of Spells</option>
+                <option value="Eye of Secrets">Eye of Secrets</option>
+                <option value="Muisak">Muisak</option>
+                <option value="Taproot">Taproot</option>
+                <option value="Celestial Censer">Celestial Censer</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="label-form">
+            <div class="input-container flex-basis-48">
+              <label for="head">Head</label>
+              <select name="head" id="head" required>
+                <option value=""></option>
+                <option value="Soldier Helmet">Soldier Helmet</option>
+                <option value="Demon Helmet">Demon Helmet</option>
+                <option value="Duskweaver Helmet">Duskweaver Helmet</option>
+                <option value="Graveguard Helmet">Graveguard Helmet</option>
+                <option value="Guardian Helmet">Guardian Helmet</option>
+                <option value="Helmet of Valor">Helmet of Valor</option>
+                <option value="Judicator Helmet">Judicator Helmet</option>
+                <option value="Knight Helmet">Knight Helmet</option>
+                <option value="Royal Helmet">Royal Helmet</option>
+                <option value="Scholar Cowl">Scholar Cowl</option>
+                <option value="Cleric Cowl">Cleric Cowl</option>
+                <option value="Cowl of Purity">Cowl of Purity</option>
+                <option value="Cultist Cowl">Cultist Cowl</option>
+                <option value="Druid Cowl">Druid Cowl</option>
+                <option value="Feyscale Hat">Feyscale Hat</option>
+                <option value="Fiend Cowl">Fiend Cowl</option>
+                <option value="Mage Cowl">Mage Cowl</option>
+                <option value="Royal Cowl">Royal Cowl</option>
+                <option value="Mercenary Hood">Mercenary Hood</option>
+                <option value="Assassin Hood">Assassin Hood</option>
+                <option value="Hellion Hood">Hellion Hood</option>
+                <option value="Hood of Tenacity">Hood of Tenacity</option>
+                <option value="Hunter Hood">Hunter Hood</option>
+                <option value="Mistwalker Hood">Mistwalker Hood</option>
+                <option value="Royal Hood">Royal Hood</option>
+                <option value="Specter Hood">Specter Hood</option>
+                <option value="Stalker Hood">Stalker Hood</option>
+                <option value="Skinning Cap">Skinning Cap</option>
+              </select>
+            </div>
+            <div class="input-container flex-basis-48">
+              <label for="chest">Chest</label>
+              <select name="chest" id="chest" required>
+                <option value=""></option>
+                <option value="Soldier Armor">Soldier Armor</option>
+                <option value="Demon Armor">Demon Armor</option>
+                <option value="Duskweaver Armor">Duskweaver Armor</option>
+                <option value="Graveguard Armor">Graveguard Armor</option>
+                <option value="Guardian Armor">Guardian Armor</option>
+                <option value="Armor of Valor">Armor of Valor</option>
+                <option value="Judicator Armor">Judicator Armor</option>
+                <option value="Knight Armor">Knight Armor</option>
+                <option value="Royal Armor">Royal Armor</option>
+                <option value="Scholar Robe">Scholar Robe</option>
+                <option value="Cleric Robe">Cleric Robe</option>
+                <option value="Robe of Purity">Robe of Purity</option>
+                <option value="Cultist Robe">Cultist Robe</option>
+                <option value="Druid Robe">Druid Robe</option>
+                <option value="Feyscale Robe">Feyscale Robe</option>
+                <option value="Fiend Robe">Fiend Robe</option>
+                <option value="Mage Robe">Mage Robe</option>
+                <option value="Royal Robe">Royal Robe</option>
+                <option value="Mercenary Jacket">Mercenary Jacket</option>
+                <option value="Assassin Jacket">Assassin Jacket</option>
+                <option value="Hellion Jacket">Hellion Jacket</option>
+                <option value="Jacket of Tenacity">Jacket of Tenacity</option>
+                <option value="Hunter Jacket">Hunter Jacket</option>
+                <option value="Mistwalker Jacket">Mistwalker Jacket</option>
+                <option value="Royal Jacket">Royal Jacket</option>
+                <option value="Specter Jacket">Specter Jacket</option>
+                <option value="Stalker Jacket">Stalker Jacket</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="label-form">
+            <div class="input-container flex-basis-48">
+              <label for="feet">Feet</label>
+              <select name="feet" id="feet" required>
+                <option value=""></option>
+                <option value="Soldier Boots">Soldier Boots</option>
+                <option value="Demon Boots">Demon Boots</option>
+                <option value="Duskweaver Boots">Duskweaver Boots</option>
+                <option value="Graveguard Boots">Graveguard Boots</option>
+                <option value="Guardian Boots">Guardian Boots</option>
+                <option value="Boots of Valor">Boots of Valor</option>
+                <option value="Judicator Boots">Judicator Boots</option>
+                <option value="Knight Boots">Knight Boots</option>
+                <option value="Royal Boots">Royal Boots</option>
+                <option value="Scholar Sandals">Scholar Sandals</option>
+                <option value="Cleric Sandals">Cleric Sandals</option>
+                <option value="Sandals of Purity">Sandals of Purity</option>
+                <option value="Cultist Sandals">Cultist Sandals</option>
+                <option value="Druid Sandals">Druid Sandals</option>
+                <option value="Feyscale Sandals">Feyscale Sandals</option>
+                <option value="Fiend Sandals">Fiend Sandals</option>
+                <option value="Mage Sandals">Mage Sandals</option>
+                <option value="Royal Sandals">Royal Sandals</option>
+                <option value="Mercenary Shoes">Mercenary Shoes</option>
+                <option value="Assassin Shoes">Assassin Shoes</option>
+                <option value="Hellion Shoes">Hellion Shoes</option>
+                <option value="Shoes of Tenacity">Shoes of Tenacity</option>
+                <option value="Hunter Shoes">Hunter Shoes</option>
+                <option value="Mistwalker Shoes">Mistwalker Shoes</option>
+                <option value="Royal Shoes">Royal Shoes</option>
+                <option value="Specter Shoes">Specter Shoes</option>
+                <option value="Stalker Shoes">Stalker Shoes</option>
+              </select>
+            </div>
+            <div class="input-container flex-basis-48">
+              <label for="cape">Cape</label>
+              <select name="cape" id="cape" required>
+                <option value=""></option>
+                <option value="Cape">Cape</option>
+                <option value="Avalonian Cape">Avalonian Cape</option>
+                <option value="Brecilien Cape">Brecilien Cape</option>
+                <option value="Bridgewatch Cape">Bridgewatch Cape</option>
+                <option value="Caerleon Cape">Caerleon Cape</option>
+                <option value="Demon Cape">Demon Cape</option>
+                <option value="Fort Sterling Cape">Fort Sterling Cape</option>
+                <option value="Heretic Cape">Heretic Cape</option>
+                <option value="Keeper Cape">Keeper Cape</option>
+                <option value="Lymhurst Cape">Lymhurst Cape</option>
+                <option value="Martlock Cape">Martlock Cape</option>
+                <option value="Morgana Cape">Morgana Cape</option>
+                <option value="Thetford Cape">Thetford Cape</option>
+                <option value="Undead Cape">Undead Cape</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="label-form">
+            <div class="input-container flex-basis-48">
+              <label for="food">Food</label>
+              <select name="food" id="food" required>
+                <option value=""></option>
+                <option value="T7 Avalonian Pork Omelette">T7 Avalonian Pork Omelette</option>
+                <option value="T7.1 Avalonian Pork Omelette">T7.1 Avalonian Pork Omelette</option>
+                <option value="T7.2 Avalonian Pork Omelette">T7.2 Avalonian Pork Omelette</option>
+                <option value="T7.3 Avalonian Pork Omelette">T7.3 Avalonian Pork Omelette</option>
+                <option value="T7 Dusthole Crab Omelette">T7 Dusthole Crab Omelette</option>
+                <option value="T7.1 Dusthole Crab Omelette">T7.1 Dusthole Crab Omelette</option>
+                <option value="T7.2 Dusthole Crab Omelette">T7.2 Dusthole Crab Omelette</option>
+                <option value="T7.3 Dusthole Crab Omelette">T7.3 Dusthole Crab Omelette</option>
+                <option value="T7 Pork Omelette">T7 Pork Omelette</option>
+                <option value="T7.1 Pork Omelette">T7.1 Pork Omelette</option>
+                <option value="T7.2 Pork Omelette">T7.2 Pork Omelette</option>
+                <option value="T7.3 Pork Omelette">T7.3 Pork Omelette</option>
+                <option value="T7 Frostpeak Deadeye Pie">T7 Frostpeak Deadeye Pie</option>
+                <option value="T3 Upland Coldeye Pie">T3 Upland Coldeye Pie</option>
+                <option value="T8 Avalonian Beef Sandwhich">T8 Avalonian Beef Sandwhich</option>
+                <option value="T8.1 Avalonian Beef Sandwhich">
+                  T8.1 Avalonian Beef Sandwhich
+                </option>
+                <option value="T8.2 Avalonian Beef Sandwhich">
+                  T8.2 Avalonian Beef Sandwhich
+                </option>
+                <option value="T8.3 Avalonian Beef Sandwhich">
+                  T8.3 Avalonian Beef Sandwhich
+                </option>
+                <option value="T8 Thunderfall Lurcher Sandwhich">
+                  T8 Thunderfall Lurcher Sandwhich
+                </option>
+                <option value="T8.1 Thunderfall Lurcher Sandwhich">
+                  T8.1 Thunderfall Lurcher Sandwhich
+                </option>
+                <option value="T8.2 Thunderfall Lurcher Sandwhich">
+                  T8.2 Thunderfall Lurcher Sandwhich
+                </option>
+                <option value="T8.3 Thunderfall Lurcher Sandwhich">
+                  T8.3 Thunderfall Lurcher Sandwhich
+                </option>
+                <option value="T8 Beef Sandwhich">T8 Beef Sandwhich</option>
+                <option value="T8.1 Beef Sandwhich">T8.1 Beef Sandwhich</option>
+                <option value="T8.2 Beef Sandwhich">T8.2 Beef Sandwhich</option>
+                <option value="T8.3 Beef Sandwhich">T8.3 Beef Sandwhich</option>
+                <option value="T8 Avalonian Beef Stew">T8 Avalonian Beef Stew</option>
+                <option value="T8.1 Avalonian Beef Stew">T8.1 Avalonian Beef Stew</option>
+                <option value="T8.2 Avalonian Beef Stew">T8.2 Avalonian Beef Stew</option>
+                <option value="T8.3 Avalonian Beef Stew">T8.3 Avalonian Beef Stew</option>
+                <option value="T8 Deadwater Eel Stew">T8 Deadwater Eel Stew</option>
+                <option value="T8.1 Deadwater Eel Stew">T8.1 Deadwater Eel Stew</option>
+                <option value="T8.2 Deadwater Eel Stew">T8.2 Deadwater Eel Stew</option>
+                <option value="T8.3 Deadwater Eel Stew">T8.3 Deadwater Eel Stew</option>
+                <option value="T6 Redspring Eel Stew">T6 Redspring Eel Stew</option>
+                <option value="T6.1 Redspring Eel Stew">T6.1 Redspring Eel Stew</option>
+                <option value="T6.2 Redspring Eel Stew">T6.2 Redspring Eel Stew</option>
+                <option value="T6.3 Redspring Eel Stew">T6.3 Redspring Eel Stew</option>
+                <option value="T8 Beef Stew">T8 Beef Stew</option>
+                <option value="T8.1 Beef Stew">T8.1 Beef Stew</option>
+                <option value="T8.2 Beef Stew">T8.2 Beef Stew</option>
+                <option value="T8.3 Beef Stew">T8.3 Beef Stew</option>
+                <option value="T3 Wheat Soup">T3 Wheat Soup</option>
+                <option value="T5 Cabbage Soup">T5 Cabbage Soup</option>
+                <option value="T7 Roast Pork">T7 Roast Pork</option>
+                <option value="T7.1 Roast Pork">T7.1 Roast Pork</option>
+                <option value="T7.2 Roast Pork">T7.2 Roast Pork</option>
+                <option value="T7.3 Roast Pork">T7.3 Roast Pork</option>
+                <option value="T7 Roasted Puremist Snapper">T7 Roasted Puremist Snapper</option>
+                <option value="T7.1 Roasted Puremist Snapper">
+                  T7.1 Roasted Puremist Snapper
+                </option>
+                <option value="T7.2 Roasted Puremist Snapper">
+                  T7.2 Roasted Puremist Snapper
+                </option>
+                <option value="T7.3 Roasted Puremist Snapper">
+                  T7.3 Roasted Puremist Snapper
+                </option>
+                <option value="T7 Danglemouth Catfish">T7 Danglemouth Catfish</option>
+                <option value="T7 Frostpeak Deadeye">T7 Frostpeak Deadeye</option>
+                <option value="T8 Steelscale Swordfish">T8 Steelscale Swordfish</option>
+              </select>
+            </div>
+            <div class="input-container flex-basis-48">
+              <label for="pot">Pot</label>
+              <input id="pot" name="pot" type="text" required />
+            </div>
+          </div>
+
+          <button class="cadastro-evento" id="cadastro-evento" type="submit">Create</button>
+        </form>
+      </div>
+    </div>
+    <script>
+      // Obtém os elementos
+      const modal = document.getElementById('modal');
+      const openModalBtn = document.getElementById('openModalBtn');
+      const closeModalBtn = document.querySelector('.close-btn');
+
+      // Abrir modal
+      openModalBtn.addEventListener('click', () => {
+        modal.style.display = 'flex'; // Mostra o modal
+        document.body.classList.add('modal-open'); // Impede rolagem da página de fundo
+      });
+
+      // Fechar modal ao clicar no botão de fechar
+      closeModalBtn.addEventListener('click', () => {
+        modal.style.display = 'none'; // Esconde o modal
+        document.body.classList.remove('modal-open'); // Permite rolagem da página de fundo
+      });
+
+      // Fechar modal ao clicar fora do conteúdo do modal
+      window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.style.display = 'none'; // Esconde o modal
+          document.body.classList.remove('modal-open'); // Permite rolagem da página de fundo
+        }
+      });
+      	
+    </script>
+  </body>
+</html>

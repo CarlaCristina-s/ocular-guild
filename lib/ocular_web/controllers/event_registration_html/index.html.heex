@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href={~p"/assets/app.css"} />
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+    <title>Ocular - Events</title>
+  </head>
+
+  <body>
+    <div class="container-content">
+      <header class="header-table">
+        <div class="logo">
+          <img src="/images/Vector_Smart_Object.png" alt="Logo da Guild" />
+        </div>
+        <nav>
+          <ul>
+            <li><a href="../">Home</a></li>
+            <li><a href="../../players/log_out">Log Out</a></li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <div class="container-events">
+          <div class="mx-auto">
+            <div class="table-responsive-sm">
+              <%= for event <- Ocular.Events.get_showable_events() do %>
+                <table class="table table-dark table-events">
+                  <tr>
+                    <td class="p-3"><%= event.name %></td>
+                    <td class="p-3">Caller: <%= event.caller %></td>
+                    <td class="p-3">Location: <%= event.location %></td>
+                    <td class="p-3" id="eventTime"><%= event.time %></td>
+                    <td class="p-3">
+                      <button type="submit" class="btn btn-dark">
+                        <a href={"/events/#{event.id}"}>Check Event</a>
+                      </button>
+
+                      <%= if @current_player.admin? do %>
+                        <%= raw("""
+                        <button type="submit" class="btn btn-dark">
+                          <a href="/events/#{event.id}/edit">Edit Event</a> 
+                        </button>
+                        """) %>
+                      <% end %>
+                    </td>
+                  </tr>
+                </table>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script>
+    let time = document.getElementById("eventTime").innerHTML;
+    let month = time.slice(5, 7) - 1;
+    let parsedMonth = month.toString();
+    let utc = Date.UTC(time.slice(0, 4), parsedMonth, time.slice(8, 10), time.slice(11, 13), time.slice(14, 16));
+
+     window.onload = function() { document.getElementById("eventTime").innerHTML = new Date(utc).toLocaleString(); }
+    </script>
+  </body>
+</html>
